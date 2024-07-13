@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+
+{% block title %}USER REGISTRATION {% endblock %}
+{% block content %}
+<script>
+		<!--with javascript to hold data for msg error correction -->
+function validate() {
+  var username = document.getElementById('username');
+  var password = document.getElementById('password');
+  if (username.value == "") {
+    alert("Enter username");
+    return false;
+  }
+  if (password.value == "") {
+    alert("Enter password");
+    return false;
+  }
+  }
+	</script>
+<div align="center">
+    <div align="center" class="border">
+<h>REGISTER TO BOOK our exquisite design Rooms in Maputo</h><br>
+{% if messages %}
+{% for i in messages %}
+<div class="msg">{{ i }}</div>
+{% endfor %}
+{% endif %}
+<form action="/Register/" method="post">
+    {% csrf_token %}
+    <h2 class="text-center">Register </h2>
+    <input id="username" name="username" type="text" placeholder="Enter Your Username" class="textbox"/></br></br>
+    <input id="password" name="password" type="password" placeholder="Enter Your Password" class="textbox"/></br></br></br>
+    <button onclick="return validate()">Register </button>
+    </form>
+    <p >Already have an account? <a  href="{% url 'Login' %}"> login here</a></p>
+
+        </div></div>
+{% endblock %}

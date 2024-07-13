@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+
+{% block title %}Africana Shops Items{% endblock %}
+{% block content %}
+<div align="center">
+ <h1>Africana Shopping Mall
+ </h1></div>
+{% if messages %}
+{% for i in messages %}
+<div class="msg">{{ i }}</div>
+{% endfor %}
+{% endif %}
+<table style="width:100%"><tr><td style="width:60%"><h>View our items in Africana shopping Malls</h><br></td>
+<td ><a  href="{% url 'Login' %}"> login here</a> | </td>
+<td > <a href="{% url 'Register' %}">Create an Account</a> | </td>
+<td > <a href="{% url 'ShowCart' %}">My shopping Cart</a></td>
+</tr></table>
+
+ {% for i in RoomsDetails_pipe %}
+<img src="{{i.images.url }}" style="height:180px; border-radius: 30px;"><br>
+<b>category-</b>{{i.category.category_name}}|
+<b>Item name -</b>{{i.room_name}} |
+ <b>Item Price -</b> ₹ {{i.price}} <br>
+<b>Item Uid -</b> {{i.uid}} <br>
+<a href="{%  url 'addCart' i.uid %}"  >??add cart </a><br>
+<p></p>
+{% endfor %}
+{{sumpipe}}
+{% endblock %}

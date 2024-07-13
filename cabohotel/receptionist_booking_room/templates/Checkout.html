@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+
+{% block title %}Check Out {% endblock %}
+{% block content %}
+
+{% if messages %}
+{% for i in messages %}
+<div class="msg">{{ i }}</div>
+{% endfor %}
+{% endif %}
+
+<div align="center"><h1>Check Out</h1><br>
+    <strong>{{userpipe}} do you want to check out?</strong></div>
+<div align="center">
+    <div align="center" class="border">
+        the session will expire at {{expire_at}}
+<form action="/Order/" method="post">
+    {% csrf_token %}
+    <h2 class="text-center">Order Form </h2>
+    You,{{userpipe}} are to pay {{totalprice_pipe}} with shipping fee of 50 for items{{myitems_pipe}}
+    <input id="username" name="username" type="hidden"value="{{userpipe}}" class="textbox"/>
+    <input id="totalprice" name="totalprice" type="hidden" value="{{totalprice_pipe}}" class="textbox"/>
+    <input id="shipping" name="shipping" type="hidden" value="50" class="textbox"/>
+    <input id="items" name="items" type="hidden" value="{{myitems_pipe}}" class="textbox"/>
+    <p>Enter payment Option :</p>
+    <select name="paymentOption" id="paymentOption">
+    <option value="onDelivery">Pay ON Delivery</option>
+    <option value="MasterCard">with Mastercard</option>
+    </select></br></br>
+    <p>Enter Delivery address :</p>
+    <textarea id="address" name="address"></textarea></br></br></br>
+    <button>Confirm Order </button>
+    </form>
+        </div></div>
+{% endblock %}

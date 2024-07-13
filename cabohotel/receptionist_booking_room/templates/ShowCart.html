@@ -1,0 +1,28 @@
+{% extends "master.html" %}
+
+{% block title %}MY CART {% endblock %}
+{% block content %}
+
+{% if messages %}
+{% for i in messages %}
+<div class="msg">{{ i }}</div>
+{% endfor %}
+{% endif %}
+
+<div align="center"><h1>My Shopping Basket</h1><br>
+    <strong>Welcome</strong>    {{userpipe}}</div>
+<table style="width:100%"><tr><td style="width:70%"><h>__________________</h><br></td>
+<td ><a  href="{% url 'Login' %}"> login here</a> | </td>
+<td > <a href="{% url 'Register' %}">Create an Account</a> | </td>
+<td > <a href="{% url 'home' %}">Home</a></td>
+</tr></table>
+{% for i in CartItems_pipe %}
+<img src="{{i.room.images.url }}" style="height: 50px; border-radius: 30px;">|<br>
+{{i.room.room_name }} |<br>
+{{i.room.price}}<strong>naira</strong> |<br>
+<a href="{% url 'RemoveCart' i.uid%}">????️ Remove item</a><br>
+{% endfor %}
+<br>
+
+<div align="center"><h1><a href="{% url 'Checkout' %}">Checkout</a></h1><br>
+{% endblock %}
